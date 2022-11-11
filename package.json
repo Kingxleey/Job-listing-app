@@ -1,0 +1,31 @@
+{
+  "name": "shoprite",
+  "version": "1.0.0",
+  "description": "shopping mall",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Github.com/kingxleey.git"
+  },
+  "author": "kingsley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Github.com/kingxleey/issues"
+  },
+  "homepage": "https://github.com/Github.com/kingxleey#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "catch-async": "^1.0.1",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "mongoose": "^6.7.2",
+    "path": "^0.12.7"
+  }
+}
