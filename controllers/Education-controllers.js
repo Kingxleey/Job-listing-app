@@ -1,6 +1,8 @@
 const Education = require('../models/Education-models')
 //const CatchAsync = require("../utils/catch-async.js");
 
+
+//creating jobs
 exports.createEducation = (async (req, res) => {
   const {universityAttended, startYear, endYear, degree,} = req.body;
   const education = await Education.create({
@@ -14,7 +16,7 @@ exports.createEducation = (async (req, res) => {
 
 
 
-
+//geting all jobs
 exports.getEducation  = async (req, res) => {
     try{
       const id = req.params.id
