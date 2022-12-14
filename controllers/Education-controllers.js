@@ -60,34 +60,6 @@ const updatedEducation = await Education.findByIdAndUpdate(req.params.id, update
 
 
 
-
-
-
-
-
-
-// exports.updateEducation = (async (req, res, next) => {
-//     const education = await Education.findById(req.params.id);
-    // if (!education ) {
-    //   return next(
-    //     new ErrorObject(`There is no user with the id ${req.params.id}`, 400)
-    //   );
-    // }
-    // if (req.education.id !== req.params.id) {
-    //   return next(new ErrorObject("You are not authorised", 403));
-    // }
-    // const UniversityAttended = req.body.UniversityAttended === undefined ? education.UniversityAttended : req.body.UniversityAttended;
-    // const  startYear = req.body. startYear === undefined ? education.startYear : req.body. startYear ;
-    // const endYear = req.body.endYear === undefined ? education.endYear : req.body.endYear;
-    // const  degree = req.body.degree === undefined ? education.degree : req.body.degree
-    // const update = { UniversityAttended, startYear, endYear, degree };
-    // const updatedEducation  = await Education.findByIdAndUpdate(req.params.id, update,);
-    // res.status(200).send(updatedEducation)
-    // });
-
-
-
-
 exports.deleteEducation  = (async (req, res) => {
         const education  = await Education.findById(req.params.id)
         if (!education ) {

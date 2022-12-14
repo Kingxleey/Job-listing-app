@@ -9,7 +9,7 @@ createExperience,
 const router = express.Router();
 
 router.post ('/', createExperience)
-router.delete('/:id', deleteExperience);
+router.delete('/', deleteExperience);
 router.patch('/:id', updateExperience);
 router.get('/', getExperience);
 module.exports = router;

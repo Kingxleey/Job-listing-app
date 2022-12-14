@@ -22,34 +22,67 @@ exports.createExperience = (async (req, res) => {
     }
 }),
 
+// exports.getExperience = async (req, res) => {
+//   try {
+//     const id = req.params.id;  //http://localhost:4000/api/v1/job/63978f08dedebaf8e8e6d019
+//     console.log({ id })
+//     const experience = await Experience.findById(id)
+//     res.status(200).send(experience);
+
+//   } catch (err) {
+//     res.status(400).json({
+//       status: 'fail',
+//       message: err
+//     })
+//   }
+// }
+
+
 exports.getExperience = async (req, res) => {
   try {
-    const id = req.params.id;  //http://localhost:4000/api/v1/job/63978f08dedebaf8e8e6d019
-    console.log({ id })
-    const experience = await Experience.findById(id)
-    res.status(200).send(experience);
-
-  } catch (err) {
+    const experience = await Experience.findById(req.params.id);
+    res.status(200).send(experience)
+  
+  } catch (error) {
     res.status(400).json({
-      status: 'fail',
-      message: err
-    })
+      status: "fail",
+      message: error,
+    });
   }
-}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Update A User
 exports.updateExperience = (async (req, res, next) => {
   const experience = await Experience.findById(req.params.id);
-  if (!education) {
+  if (!experience) {
     return next(
       new ErrorObject(`There is no user with the id ${req.params.id}`, 400)
     );
   }
-  const companyName = 
-req.body.companyName === undefined ? education.companyName : req.body.companyName;
-const discription = req.body.discription === undefined ? education.discription : req.body.discription;
-const jobTitle = req.body.jobTitle === undefined ? education.jobTitle : req.body.jobTitle;
+  const companyName = req.body.companyName === undefined ? experience.companyName : req.body.companyName;
+const discription = req.body.discription === undefined ? experience.discription : req.body.discription;
+const jobTitle = req.body.jobTitle === undefined ? experience.jobTitle : req.body.jobTitle;
 const startDate = req.body.startDate === undefined ? experience.startDate : req.body.startDate;
 const endDate = req.body.endDate === undefined ? experience.endDate : req.body.endDate;
 const update = {companyName, discription,jobTitle, startDate, endDate };
@@ -66,17 +99,23 @@ const updatedExperience = await Experience.findByIdAndUpdate(req.params.id, upda
 });
 
 
-  exports.deleteExperience = (async (req, res, next) => {
+exports.deleteExperience = async (req, res) => {
+  try {
     const experience = await Experience.findById(req.params.id);
     if (!experience) {
-      return next(
-        new ErrorObject(`There is no user with the id ${req.params.id}`, 400)
-      );
+      return res.status(400).json({
+        status: "fail",
+        message: `There is no user with the id ${req.params.id}`,
+      });
     }
-
     await Experience.findByIdAndDelete(req.params.id);
     res.status(204).json({
-      status: "success",
+      status: "successful deleted",
     });
-  });
-  
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
