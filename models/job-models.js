@@ -20,6 +20,7 @@ const jobSchema = new mongoose.Schema({
    
 category: {
       type: String,
+      required: [true, "Category must exist"],
     },
 },
 

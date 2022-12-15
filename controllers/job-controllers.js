@@ -1,6 +1,6 @@
 const Job = require("../models/job-models");
 
-
+// Creating jobs
 exports.createJob = (async (req, res) => {
   try {
     // NO AUTHORIZATION YET
@@ -59,7 +59,10 @@ exports.createJob = (async (req, res) => {
     }
   }),
 
-  exports.getJobs = async (req, res) => {
+
+
+//Getting 
+  exports.getAllJob = async (req, res) => {
     try {
       const job = await Job.find()
       res.status(200).send(job)
@@ -91,31 +94,30 @@ exports.getJob = async (req, res) => {
 
 
 
-exports.updateJob = async (req, res) => {
-  try {
-    // only site owner can update product in their shop
-    const job = await Job.findById(req.params.id);
-
-    if (!job) {
-      return res
-        .status(404)
-        .json({ error: true, message: "job not found in your shop" });
-    }
-    const Job = await Job.findOneAndUpdate()
-    res.status(200).json({
-      error: false,
-      message: "job updated",
-      data: Job,
-
-    });
-  } catch (error) {
-    console.log(error?.message);
-    return res.status(500).json({
-      error: true,
-      message: "Something went wrong",
-    });
+exports.updateJob = (async (req, res, next) => {
+  const job = await Job.findById(req.params.id);
+  if (!job) {
+    return next(
+      new ErrorObject(`There is no user with the id ${req.params.id}`, 400)
+    );
   }
-};
+const jobTitle = req.body.jobTitle === undefined ? job.jobTitle : req.body.jobTitle;
+const description = req.body.discription === undefined ? job.description : req.body.discription;
+const isAvailable = req.body.isAvailable === undefined ?  job.isAvailable : req.body.isAvailable;
+const category = req.body.category === undefined ?  job.category : req.body.category; 
+const update = {jobTitle, description, isAvailable, category};
+const updatedJob = await Job.findByIdAndUpdate(req.params.id, update, {
+    new: true,
+    runValidators: true,
+  });
+  res.status(200).json({
+    status: "success",
+    data: {
+      job: updatedJob,
+    },
+  });
+});
+
 
 
 exports.deleteJob = async (req, res, next) => {

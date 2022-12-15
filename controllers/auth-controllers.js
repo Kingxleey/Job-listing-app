@@ -49,6 +49,7 @@ exports.signUp = CatchAsync(async (req, res, next) => {
   createAndSendToken(user, 201, res);
 });
 
+
 // Sign In User
 exports.signIn = CatchAsync(async (req, res, next) => {
   const { email, password } = req.body;

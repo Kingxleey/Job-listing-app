@@ -37,7 +37,7 @@ exports.createExperience = (async (req, res) => {
 //   }
 // }
 
-
+//Getting all experience
 exports.getExperience = async (req, res) => {
   try {
     const experience = await Experience.findById(req.params.id);
@@ -52,27 +52,7 @@ exports.getExperience = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Update A User
+// Update jobseeker experience
 exports.updateExperience = (async (req, res, next) => {
   const experience = await Experience.findById(req.params.id);
   if (!experience) {
@@ -99,6 +79,7 @@ const updatedExperience = await Experience.findByIdAndUpdate(req.params.id, upda
 });
 
 
+//Deleting jobseeker experience
 exports.deleteExperience = async (req, res) => {
   try {
     const experience = await Experience.findById(req.params.id);

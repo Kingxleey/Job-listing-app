@@ -2,7 +2,7 @@ const Education = require('../models/Education-models')
 //const CatchAsync = require("../utils/catch-async.js");
 
 
-//creating jobs
+//creating edcation detail
 exports.createEducation = (async (req, res) => {
   const {universityAttended, startYear, endYear, degree,} = req.body;
   const education = await Education.create({
@@ -16,7 +16,7 @@ exports.createEducation = (async (req, res) => {
 
 
 
-//geting all jobs
+//geting all education detail
 exports.getEducation  = async (req, res) => {
     try{
       const id = req.params.id
@@ -32,7 +32,7 @@ exports.getEducation  = async (req, res) => {
 }
 
 
-// Update A User
+// Update educattion detail
 exports.updateEducation =  (async (req, res, next) => {
   const education = await Education.findById(req.params.id);
   if (!education) {
@@ -59,7 +59,7 @@ const updatedEducation = await Education.findByIdAndUpdate(req.params.id, update
 });
 
 
-
+//deleting Education detail
 exports.deleteEducation  = (async (req, res) => {
         const education  = await Education.findById(req.params.id)
         if (!education ) {
