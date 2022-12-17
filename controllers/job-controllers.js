@@ -1,5 +1,5 @@
 const Job = require("../models/job-models");
-
+const ErrorObject = require("../utils/error");
 // Creating jobs
 exports.createJob = (async (req, res) => {
   try {

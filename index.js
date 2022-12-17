@@ -6,8 +6,7 @@ const ErrorHandler = require ("./controllers/error controllers");
 const userRouter = require("./routes/user-routes");
 const jobRouter = require("./routes/job-routes");
 const ApplyRouter = require("./routes/Apply-routes");
-const EducationRouter = require("./routes/Education-routes");
-const ExperienceRouter = require("./routes/Experience-routes");
+
 const app = express();
 
 app.use(express.json());
@@ -22,8 +21,6 @@ app.use(morgan("combined", { stream: accessLogStream }));
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/apply", ApplyRouter);
-app.use("/api/v1/education", EducationRouter);
-app.use("/api/v1/experience", ExperienceRouter);
 
 app.all("*", (req, res, next) => {
   const err = new AppError(`http://localhost:7000${req.url} not found`, 404);
