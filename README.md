@@ -18,7 +18,5 @@ Creating the backend for an Job listing application. Which includes the followin
 
 5. Job Service: Handles the creation  job, get list of jobs, update jobs.
 
-
-# The documentation can be found in the link below
-
-https://documenter.postman.com/preview/24083798-7202bb87-388f-49f2-814b-d09d4fc341a3?environment=&versionTag=latest&apiName=CURRENT&version=latest&documentationLayout=classic-double-column&right-sidebar=303030&top-bar=FFFFFF&highlight=EF5B25
+#The documentation can be found in the link below :
+https://documenter.getpostman.com/view/24083798/2s8YzZPK73
