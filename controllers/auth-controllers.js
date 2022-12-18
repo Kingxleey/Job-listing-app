@@ -43,15 +43,21 @@ exports.signUp = (async (req, res, next) => {
 
   const { email, fullName, password, passwordConfirm, role } = req.body;
   console.log(req.body)
-  const user = await User.create({
-    email,
-    fullName,
-    password,
-    passwordConfirm,
-    role,
-  });
+ try {
+	 const user = await User.create({
+	    email,
+	    fullName,
+	    password,
+	    passwordConfirm,
+	    role,
+	  });
+    createAndSendToken(user, 201, res);
+} catch (error) {
+  return next(new ErrorObject(error, 401));
+
+}
  
-  createAndSendToken(user, 201, res);
+  
 });
 
 

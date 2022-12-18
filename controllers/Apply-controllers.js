@@ -4,23 +4,51 @@ const ErrorObject = require("../utils/error");
 
 
 
+
+
 //creating the apply detail
 
 exports.createApply = (async (req, res) => {
-  const jobId = req.params.jobId;
-
-  const {
-    fullName, phoneNumber, email, universityAttended, startYear, 
-    endYear,  universityDegree, companyName, description, startDate, endDate,} = req.body;
-
-
-  const apply = await Apply.create({
-  fullName, phoneNumber, email,universityAttended, startYear, 
-  endYear,  universityDegree, companyName, description, jobId, startDate, endDate,
+try {
+	  const jobId = req.params.jobId;
+	
+	  const {
+	    fullName, phoneNumber, email, universityAttended, startYear, 
+	    endYear,  universityDegree, companyName, description, startDate, endDate,} = req.body;
+	
+	
+	  const apply = await Apply.create({
+	  fullName, phoneNumber, email,universityAttended, startYear, 
+	  endYear,  universityDegree, companyName, description, jobId, startDate, endDate,
+	  });
+	
+	  const application = await Apply.findById(apply._id).populate('jobId')
+	  res.status(200).send(application)
+} catch (err) {
+	  res.status(400).json({
+        status: 'fail',
+        message: err
+      })
+}
   });
-  res.status(200).send(apply)
-  });
 
+
+  // Getting an application
+  exports.getApply = async (req, res) => {
+    try {
+      const id = req.params.id;  
+      console.log({ id })
+      const apply = await Apply.findById(id).populate('jobId')
+      res.status(200).send(apply)
+  
+    } catch (err) {
+      res.status(400).json({
+        status: 'fail',
+        message: err
+      })
+    }
+  }
+  
 
 
 // // Update Apply  detail
