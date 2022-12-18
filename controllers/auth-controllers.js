@@ -7,6 +7,8 @@ const ErrorObject = require("../utils/error");
 
 const { JWT_EXPIRES_IN, JWT_SECRET, JWT_COOKIE_EXPIRES_IN, NODE_ENV } =
   process.env;
+  console.log({ JWT_EXPIRES_IN, JWT_SECRET, JWT_COOKIE_EXPIRES_IN, NODE_ENV })
+
 
 const signToken = (id) => {
   return jwt.sign({ id }, JWT_SECRET, {
@@ -15,7 +17,7 @@ const signToken = (id) => {
 };
 
 const createAndSendToken = CatchAsync(async (user, statusCode, res) => {
-  const token = await signToken(user._id);
+  const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
       Date.now() + JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -37,8 +39,10 @@ const createAndSendToken = CatchAsync(async (user, statusCode, res) => {
 });
 
 // sign up user
-exports.signUp = CatchAsync(async (req, res, next) => {
+exports.signUp = (async (req, res, next) => {
+
   const { email, fullName, password, passwordConfirm, role } = req.body;
+  console.log(req.body)
   const user = await User.create({
     email,
     fullName,
@@ -46,6 +50,7 @@ exports.signUp = CatchAsync(async (req, res, next) => {
     passwordConfirm,
     role,
   });
+ 
   createAndSendToken(user, 201, res);
 });
 
@@ -107,7 +112,7 @@ exports.forgotPassword = CatchAsync(async (req, res, next) => {
     );
   }
   // 2. Generate random reset token
-  const resetToken = user.createpasswordResetToken();
+  const resetToken = user.createPasswordResetToken()
   user.save({ validateBeforeSave: false });
 
   // 3. Send token to the email addess
@@ -118,11 +123,11 @@ exports.forgotPassword = CatchAsync(async (req, res, next) => {
   const message = `To reset your password click on the link below to submit your new password: ${resetUrl}`;
 
   try {
-    await sendEmail({
-      message,
-      email: user.email,
-      subject: "Your password reset url. It's valid for 10mins",
-    });
+    // await sendEmail({
+    //   message,
+    //   email: user.email,
+    //   subject: "Your password reset url. It's valid for 10mins",
+    // });
 
     res.status(200).json({
       status: "success",
@@ -132,7 +137,6 @@ exports.forgotPassword = CatchAsync(async (req, res, next) => {
   } catch (err) {
     (user.passwordResetToken = undefined),
       (user.passwordTokenExpires = undefined),
-      await user.save();
     next(new ErrorObject("Error while sending the token to your mail", 500));
   }
 });

@@ -129,7 +129,7 @@ exports.deleteJob = async (req, res, next) => {
   }
 
   await Job.findByIdAndDelete(req.params.id);
-  res.status(204).json({
+  res.status(200).json({
     status: "success",
   });
 };

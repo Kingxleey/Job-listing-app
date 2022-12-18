@@ -54,10 +54,11 @@ const  applySchema = new mongoose.Schema({
   required: true, 
   },
   
-jobTitle: {
-  type: String,
-  default: true,
-  },
+
+  jobId: {
+    type: String,
+    required: true, 
+    },
  
 startDate: {
 type: Number,

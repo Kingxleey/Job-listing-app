@@ -12,17 +12,16 @@ const userSchema = new mongoose.Schema(
 
     phoneNumber: {
       type: String,
-      required: true,
+
     },
 
   gender: {
-      type: String,
-      required: true,
+      type: String
     },
 
     contactAddress: {
       type: String,
-      required: true,
+
       
     },
     email: {
@@ -32,16 +31,7 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isEmail, "Please enter a valid email"],
     },
 
-    skill:[{
-      type: String,
-      required: [true, 'Please enter a skill set'],
-     // array: [node.js, ]
-    }],
 
-    experience:{
-      type: String,
-      required: [true, 'enter your years of experience'],
-    },
 
     password: {
       type: String,

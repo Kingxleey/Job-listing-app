@@ -18,23 +18,6 @@ const mailOptions = {
 await transport.sendEmail(mailOptions);
 };
 
-
-cron.schedule("* 01 * * *", function () {
-     console.log("Runnig a task every minute");
-      let mailOptions = {
-          from: "support@gmail.com",
-          to: "any_user_mail@gmail.com",
-          subject: `Cron job`,
-          text: `Hi there, this email was automatically sent by node cron`
-        };
-transporter.sendMail(mailOptions, function (error, info) {
-         if (error) {
-           throw error;
-         } else {
-           console.log("Email successfully sent by cron!");
-         }
-       });
-});
 module.exports = sendEmail;
 
 

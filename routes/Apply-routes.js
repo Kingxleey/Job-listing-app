@@ -6,7 +6,7 @@ createApply,
 } = require("../controllers/Apply-controllers");
 const router = express.Router();
 
-router.post ('/', createApply)
+router.post ('/:jobId', createApply)
 router.delete('/', deleteApply);
 router.patch('/:id', updateApply);
 module.exports = router;

@@ -43,7 +43,9 @@ const ErrorHandler = (err, req, res, next) => {
     if (error.name === "JsonWebTokenError") error = handleWebTokenError(error);
     prodError(error, res);
   }
-  next();
+  return  res.status(err.statusCode).json({
+    status: "success",
+  });
 };
 
 module.exports = ErrorHandler;
