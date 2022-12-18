@@ -509,3 +509,5 @@
 ::1 - - [18/Dec/2022:00:22:40 +0000] "GET /api/v1/job HTTP/1.1" 200 8355 "-" "PostmanRuntime/7.30.0"
 ::1 - - [18/Dec/2022:00:22:58 +0000] "GET /api/v1/job/63973a55c08f13ce7662e062 HTTP/1.1" 200 254 "-" "PostmanRuntime/7.30.0"
 ::1 - - [18/Dec/2022:00:23:15 +0000] "POST /api/v1/apply/63973a55c08f13ce7662e062 HTTP/1.1" 200 475 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Dec/2022:00:25:35 +0000] "GET /api/v1/job?id=63978f08dedebaf8e8e6d019 HTTP/1.1" 401 1312 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Dec/2022:00:25:50 +0000] "GET /api/v1/job?id=63978f08dedebaf8e8e6d019 HTTP/1.1" 200 8355 "-" "PostmanRuntime/7.30.0"
