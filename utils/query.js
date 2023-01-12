@@ -1,4 +1,4 @@
-class QueryMethod {
+class QueryMethod { 
     constructor(query, queryString) {
       this.query = query;
       this.queryString = queryString;
