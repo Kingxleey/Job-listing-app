@@ -22,6 +22,7 @@ exports.deleteUser = CatchAsync(async (req, res, next) => {
   });
 });
 
+
 // Update A User
 exports.updateUser = CatchAsync (async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -49,6 +50,7 @@ exports.updateUser = CatchAsync (async (req, res, next) => {
     },
   });
 });
+
 
 //  Get All Users
 exports.getAllUser = CatchAsync(async (req, res, next) => {
