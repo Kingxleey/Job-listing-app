@@ -70,6 +70,8 @@ exports.getAllUser = CatchAsync(async (req, res, next) => {
   });
 });
 
+
+
 //  Get One User
 exports.getOneUser = CatchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
