@@ -93,8 +93,6 @@ exports.getJob = async (req, res) => {
 }
 
 
-
-
 exports.updateJob = (async (req, res, next) => {
   const job = await Job.findById(req.params.id);
   if (!job) {
