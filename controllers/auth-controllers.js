@@ -76,6 +76,8 @@ exports.signIn = CatchAsync(async (req, res, next) => {
   createAndSendToken(user, 200, res);
 });
 
+
+
 // Authentication
 exports.protect = CatchAsync(async (req, res, next) => {
   let token;
