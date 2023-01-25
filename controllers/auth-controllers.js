@@ -99,6 +99,9 @@ exports.protect = CatchAsync(async (req, res, next) => {
   next();
 });
 
+
+
+
 // Authorization
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
@@ -110,6 +113,7 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
 
 exports.forgotPassword = CatchAsync(async (req, res, next) => {
   // 1. Get User based on posted email
